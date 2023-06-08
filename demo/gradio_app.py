@@ -89,6 +89,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser("Grounding DINO demo", add_help=True)
     parser.add_argument("--debug", action="store_true", help="using debug mode")
     parser.add_argument("--share", action="store_true", help="share the app")
+    parser.add_argument("--server_name", type=str, default="0.0.0.0", help="ip")
+    parser.add_argument("--server_port", type=int, default=7579, help="port")
     args = parser.parse_args()
 
     block = gr.Blocks().queue()
@@ -121,5 +123,5 @@ if __name__ == "__main__":
                         input_image, grounding_caption, box_threshold, text_threshold], outputs=[gallery])
 
 
-    block.launch(server_name='0.0.0.0', server_port=7579, debug=args.debug, share=args.share)
+    block.launch(server_name=args.server_name, server_port=args.server_port, debug=args.debug, share=args.share)
 
